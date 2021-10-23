@@ -1,0 +1,99 @@
+<idea-plugin>
+    <id>com.zbyct.DaJiuJiu</id>
+    <name>DaJiuJiu</name>
+    <version>1.0.6</version>
+    <vendor url="https://www.zhihu.com/people/zuo-bian-ya-chi-teng"
+            email="309753465@qq.com" ></vendor>
+    <idea-version since-build="173.0"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.java</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.database</depends><!--该引入用于显示SQL语句高亮，不需要可以删掉 标红也不用管，不影响-->
+
+
+    <actions>
+        <group id="DaJiuJiuGroup" text="DaJiuJiu Tools"
+               popup="true" icon="/icon/DJJ-ICON.png">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>
+        </group>
+
+        <action id="EntityToVo" class="main.java.action.EntityToVo" text="Build View"
+                description="实体类转视图">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="first"/>
+        </action>
+        <action id="EntityToParam" class="main.java.action.EntityToParam" text="Build Param"
+                description="实体类转参数">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="EntityToVo"/>
+        </action>
+        <action id="EntityToService" class="main.java.action.EntityToService" text="Build Service"
+                description="实体类转服务">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="EntityToParam"/>
+        </action>
+        <action id="ServiceToController" class="main.java.action.ServiceToController" text="Build Controller"
+                description="服务类转控制器类">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="EntityToService"/>
+        </action>
+
+        <action id="ServiceMethodAddToController"
+                description="服务中的方法添加到控制器中"
+                class="main.java.action.ServiceMethodAddToController"
+                icon="/icon/DJJ-ICON.png"
+                text="Add To Controller...">
+            <add-to-group group-id="LightEditModePopup" anchor="first"/>
+        </action>
+        <action id="ServiceAddMethod"
+                description="服务类中添加方法"
+                class="main.java.action.ServiceAddMethod"
+                icon="/icon/DJJ-ICON.png"
+                text="Create Method...">
+            <add-to-group group-id="LightEditModePopup" anchor="first"/>
+        </action>
+        <action id="ChekEntityField"
+                description="检查实体类字段"
+                class="main.java.action.ChekEntityField"
+                icon="/icon/DJJ-ICON.png"
+                text="Add Field To Vo Class...">
+            <add-to-group group-id="LightEditModePopup" anchor="first"/>
+        </action>
+        <action id="ClassAddFields"
+                description="向类中添加字段"
+                class="main.java.action.ClassAddFields"
+                icon="/icon/DJJ-ICON.png"
+                text="Add Fields ...">
+            <add-to-group group-id="LightEditModePopup" anchor="first"/>
+        </action>
+        <action id="AddValidateTypeContent"
+                description="添加验证类型"
+                class="main.java.action.AddValidateTypeAction"
+                icon="/icon/DJJ-ICON.png"
+                text="Add Type Content ...">
+            <add-to-group group-id="LightEditModePopup" anchor="first"/>
+        </action>
+
+        <action id="BuildEntityFromPDM" class="main.java.action.BuildEntityFromPDM"
+                text="Create From PDM"
+                description="PDM数据模型生成实体类">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="ServiceToController"/>
+        </action>
+        <action id="BuildEntityFromSQL" class="main.java.action.BuildEntityFromSQL"
+                text="Create From SQL"
+                description="sql语句生成实体">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="BuildEntityFromPDM"/>
+        </action>
+        <action id="CreateDict" class="main.java.action.CreateDict"
+                text="Create Dict"
+                description="创建数据字典">
+            <add-to-group group-id="DaJiuJiuGroup" anchor="after" relative-to-action="ServiceToController"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="main.java.config.DJJState"
+                        serviceImplementation="main.java.config.DJJState"/>
+        <projectConfigurable groupId="DaJiuJiu-Configurable"
+                             instance="main.java.config.DJJConfigurable"/>
+    </extensions>
+
+</idea-plugin>

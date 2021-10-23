@@ -1,0 +1,1 @@
+${data.typeName!}("${data.typeDescribe!}", ${data.entityName!}.class, IEntity.field(${data.entityName!}::${data.fieldGetMethodName!}))
