@@ -18,10 +18,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public abstract class BaseJavaFileAction extends AnAction {
 
-    protected final static String ELEMENT_METHOD_FLAG = "PsiMethod:";
-    protected final static String ELEMENT_CLASS_FLAG = "PsiClass:";
-    protected final static String ELEMENT_FIELDS_FLAG = "PsiField:";
-
     @Override
     public void update(@NotNull AnActionEvent e) {
         super.update(e);

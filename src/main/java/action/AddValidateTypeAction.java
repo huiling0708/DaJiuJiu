@@ -13,6 +13,9 @@ import main.java.config.DJJState;
 import main.java.form.ValidateTypeAddForm;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 添加验证类型action
+ */
 public class AddValidateTypeAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
